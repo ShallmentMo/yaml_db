@@ -65,9 +65,9 @@ module YamlDb
         column_names = table_column_names(table)
 
         each_table_page(table) do |records|
-          rows = SerializationHelper::Utils.unhash_records(records, column_names)
-          records.each do |record|
-            io.write(record.to_csv)
+          rows = SerializationHelper::Utils.unhash_records(records.to_a, column_names)
+          rows.each do |row|
+            io.write(row.to_csv)
           end
         end
       end
